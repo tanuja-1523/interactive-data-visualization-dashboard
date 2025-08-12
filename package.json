@@ -1,0 +1,51 @@
+{
+  "name": "interactive-data-visualization-dashboard",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Interactive data visualization dashboard built with React and Chart.js",
+  "author": "",
+  "homepage": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [
+    "data",
+    "visualization",
+    "dashboard",
+    "react",
+    "chart.js"
+  ],
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": "./src/index.ts",
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "exports": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "directory": "package"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "pnpm test && pnpm build && del ./package && clean-publish",
+    "postpublish": "del ./package",
+    "emitDeclarations": "tsc --emitDeclarationOnly",
+    "build": "rollup -c && pnpm emitDeclarations",
+    "start:storybook": "storybook dev -p 6006 --ci",
+    "build:storybook": "del ./storybook-static; NODE_ENV=production storybook build",
+    "test:lint": "eslint \"src/**/*.{ts,tsx}\" \"stories/**/*.{ts,tsx}\" \"sandboxes/**/*.{ts,tsx}\" \"test/**/*.{ts,tsx}\"",
+    "test:unit": "vitest run --coverage",
+    "test:unit:watch": "vitest watch",
+    "test:size": "size-limit",
+    "test:typings": "tsd",
+    "test":
